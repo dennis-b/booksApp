@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row margin-top-10">
+        <h2>
+            Angular Directive simple example.
+        </h2>
+        <hr>
+    </div>
+    <div class="row">
+        This is regular angular directive that using: <span class="color-text">@Directive </span>annotation
+        <br>
+        You can specify link/compile/controller functions
+        <hr>
+    </div>
+
+    <div class="row">
+        <div>
+            Create View directive. by default using Class name as Directive name : 'ng-directive-demo'
+            <br>
+            Or you can specify selector in View options
+        </div>
+        <div hljs language="javascript">
+import './style/directive-demo.css'
+import template from './directive-demo.html';
+import {Directive} from 'annotations/directive-decorator';
+
+@Directive()
+class NgDirectiveDemo {
+    constructor($window) {
+        this.restrict = 'EA';
+        this.template = template;
+        this.scope = {
+            items: '='
+        };
+    this.$window = $window; // service injected
+    }
+
+    link(scope, element, attrs){
+
+    }
+
+}
+export default NgDirectiveDemo
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            Template Sample (not using vm syntax here):
+        </div>
+        <div hljs>
+            <div class="container-fluid">
+                <div class="row margin-top-10">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th><span class="contact-label">Title one</span></th>
+                            <th><span class="contact-label">Title two</span></th>
+                            <th><span class="contact-label">Title three</span></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in items">
+                            <td>{{item}}</td>
+                            <td>{{item}}</td>
+                            <td>{{item}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            Rendered Directive:
+        </div>
+        <pre>
+           <table class="table">
+               <thead>
+               <tr>
+                   <th><span class="contact-label">Title one</span></th>
+                   <th><span class="contact-label">Title two</span></th>
+                   <th><span class="contact-label">Title three</span></th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr ng-repeat="item in items">
+                   <td>{{item}}</td>
+                   <td>{{item}}</td>
+                   <td>{{item}}</td>
+               </tr>
+               </tbody>
+           </table>
+         </pre>
+    </div>
+</div>

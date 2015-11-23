@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>Dynamic Pagination w/ Filtering</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Kim Maida">
+
+    <!-- JS Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js" type="text/javascript"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
+
+    <!-- Angular Scripts -->
+    <script src="test.js" type="text/javascript"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+<div ng-controller="PageCtrl">
+    <div ng-controller="PageCtrl">
+        <label>Search:</label> <input type="text" ng-model="search.name" placeholder="Search" />
+        <br />
+
+        <label>Filter by Category:</label>
+        <ul>
+            <li><a href="" ng-click="search.category='engineering'">Engineering</a></li>
+            <li><a href="" ng-click="search.category='management'">Management</a></li>
+            <li><a href="" ng-click="search.category='business'">Business</a></li>
+        </ul>
+
+        <label>Filter by Branch:</label>
+        <ul>
+            <li><a href="" ng-click="search.branch='West'">West</a></li>
+            <li><a href="" ng-click="search.branch='East'">East</a></li>
+        </ul>
+
+        <p><strong><a href="" ng-click="resetFilters()">Show All</a></strong></p>
+
+        <h1>Items</h1>
+        <ul>
+            <li ng-repeat="item in filtered = items | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">{{item.name}}</li>
+        </ul>
+
+        <pagination page="currentPage" max-size="noOfPages" total-items="totalItems" items-per-page="entryLimit"></pagination>
+    </div>
+
+</body>
+</html>/**
+* Created by den on 11/22/2015.
+*/

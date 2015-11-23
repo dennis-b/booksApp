@@ -1,0 +1,64 @@
+<md-content class="md-padding" style="margin-left: 15%">
+    <div layout="row">
+        <md-input-container style="margin-right: 10px;">
+            <label>Find me the best</label>
+            <md-select ng-model="vm.filter.genre.category">
+                <md-option ng-repeat="category in vm.categories" value="{{category}}">{{category}}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container>
+            <label>books about</label>
+            <md-select ng-model="vm.filter.genre.name">
+                <md-option ng-repeat="type in vm.bookTypes" value="{{type}}">{{type}}</md-option>
+            </md-select>
+        </md-input-container>
+
+        <section id="search">
+            <label for="search-input"><i class="fa fa-search"></i></label>
+            <input id="search-input"
+                   class="form-control"
+                   placeholder="Search books"
+                   autocomplete="off"
+                   spellcheck="false"
+                   ng-model="vm.search.searchModel"
+                   autocorrect="off"
+                   tabindex="1">
+            <a id="search-clear" href="#" class="fa fa-times-circle hide"></a>
+        </section>
+    </div>
+
+
+    <div layout="row" layout-wrap>
+        <md-card style="width: 250px;"
+                 ng-repeat="book in vm.filtered  | filter:vm.search | filter:vm.filter | startFrom:(vm.currentPage-1)*vm.entryLimit | limitTo:vm.entryLimit">
+            <img ng-src={{book.cover}} class="md-card-image cover-image" alt="book cover">
+            <md-card-content style="min-height: 228px">
+                <div style="min-height: 70px">
+                    <h3 class="md-title">{{book.name}}</h3>
+
+                    <div>By {{book.author.name}}</div>
+                </div>
+
+                <div style="margin-top: 20px">
+                    <div><i class="fa fa-heart-o"></i> {{book.likes}}</div>
+                    <div ng-bind="vm.calcDate(book.published)"></div>
+                </div>
+            </md-card-content>
+            <div class="md-actions" layout="row" layout-align="center">
+                <md-button ng-click="vm.showDetails(book)" class="md-raised md-primary">Details</md-button>
+            </div>
+        </md-card>
+    </div>
+
+    <span layout="row">
+        <span class="align-center">
+             <pagination ng-model="vm.currentPage"
+                         max-size="vm.noOfPages"
+                         direction-links="false"
+                         boundary-links="true"
+                         total-items="vm.totalItems"
+                         items-per-page="vm.entryLimit">
+             </pagination>
+        </span>
+    </span>
+</md-content>
