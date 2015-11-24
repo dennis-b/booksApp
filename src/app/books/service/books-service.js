@@ -40,7 +40,22 @@ class BooksService {
     }
 
     getSimilarBooks(selectedBook) {
-        var books = this.getBooks();
-        return this.$q.when(books.slice(0, 3));
+        let similarArr = this.getSimilarBooksArr(selectedBook);
+        return this.$q.when(similarArr);
+    }
+
+    getSimilarBooksArr(selectedBook) {
+        let books = this.getBooks();
+        let similarArr = [];
+        for (var i = 0; i < books.length; i++) {
+            var book = books[i];
+            if (book.name != selectedBook.name && book.genre.category === selectedBook.genre.category) {
+                similarArr.push(book);
+                if (similarArr.length == 3) {
+                    return similarArr
+                }
+            }
+        }
+        return similarArr;
     }
 }
