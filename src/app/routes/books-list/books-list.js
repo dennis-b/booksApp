@@ -20,21 +20,22 @@ import {Inject,Service} from 'annotations/ng-decorator';
     }
 })
 
-@Inject('$scope', 'books', 'categories', '$filter', 'bookTypes')
+@Inject('$scope', 'books', 'categories', '$filter', 'bookTypes', '$state')
 //
 class BooksList {
-    constructor($scope, books, categories, $filter, bookTypes) {
+    constructor($scope, books, categories, $filter, bookTypes, $state) {
         this.initBooksModel(books);
-        this.initData($scope, books, categories, $filter, bookTypes);
+        this.initData($scope, books, categories, $filter, bookTypes, $state);
         this.initPaginationControls();
         this.addFilterWatch();
         this.addSearchWatch();
     }
 
-    initData($scope, books, categories, $filter, bookTypes) {
+    initData($scope, books, categories, $filter, bookTypes, $state) {
         this.books = books;
         this.filtered = books;
         this.$filter = $filter;
+        this.$state = $state;
         this.categories = categories;
         this.bookTypes = bookTypes;
         this.$scope = $scope;
@@ -46,9 +47,6 @@ class BooksList {
         angular.forEach(books, function (book, key) {
             book.searchModel = book.name + "_" + book.author.name;
         });
-
-
-        console.log(this.temp)
     }
 
     initPaginationControls() {
@@ -82,17 +80,5 @@ class BooksList {
         this.totalItems = this.filtered ? this.filtered.length : 0;
         this.noOfPages = Math.ceil(this.totalItems / this.entryLimit);
         this.currentPage = 1;
-    }
-
-    calcDate(date) {
-        let publishDate = moment(date);
-        let today = moment(new Date());
-        let diff = today.diff(publishDate, 'days');
-        var format = moment.duration(diff, "days").format('Y[y], M[m], D[d]');
-        return format + ' ago';
-    }
-
-    showDetails(book) {
-        console.log(book);
     }
 }

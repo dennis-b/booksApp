@@ -9,6 +9,7 @@ const crmPlugins = angular.module('booksApp', [
     'ngMaterial',
     'ui.bootstrap',
     'restangular',
+    'LocalStorageModule',
     'ui.router'
 ]);
 

@@ -121,7 +121,36 @@ ul.nav {
 }
 
 .cover-image {
+
     width: 100%;
     height: 250px;
     background: url('../img/throbber.gif') no-repeat;
+}
+
+.book-info {
+    padding: 10px;
+}
+
+footer {
+    /*position: absolute;*/
+    /*right: 0;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*padding: 1rem;*/
+    background-color: #efefef;
+}
+
+header {
+    background-color: rgb(16, 108, 200);
+    color: rgba(255, 255, 255, 0.87);
+}
+
+.image-preview-container {
+    height: 112px;
+    border: solid 3px #3abdd9;
+    width: 112px;
+    border-radius: 100%;
+    /*background: url("../img/avatar.jpg") no-repeat;*/
+    background-size: 100% 100%;
+    display: inline-block;
 }

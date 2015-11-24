@@ -11,12 +11,14 @@ import 'angular-material';
 import 'angular-ui-router';
 import 'angular-ui-bootstrap';
 import 'restangular';
+import 'angular-local-storage';
 
 //----------------app files-----------------------------------------------------
 import './core/core';
 import './routes/routes';
 import './books/service/books-service';
 import './books/filter/start-from-pagination-filter';
+import './books/directive/book-info';
 import mainModule from './main-module';
 
 

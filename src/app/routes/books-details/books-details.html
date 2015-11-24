@@ -1,0 +1,51 @@
+<div layout="column" layout-fill>
+    <header>
+        <md-button class="md-raised pull-left" ng-click="vm.showAllBooks()">Books</md-button>
+        <div layout="column" layout-align="center center" layout-padding="10">
+            <h1>{{vm.selectedBook.name}}</h1>
+
+            <div layout-margin="10">By {{vm.selectedBook.author.name}}</div>
+
+            <div><i class="fa fa-heart-o"></i> {{vm.selectedBook.likes}}</div>
+            <div>{{vm.selectedBook.description}}</div>
+        </div>
+
+    </header>
+
+    <main class='md-padding' layout="column" layout-align="center center" flex>
+        <md-content>
+            <md-list>
+                <md-subheader class="md-no-sticky">Introduction:</md-subheader>
+                <md-list-item class="md-3-line" ng-repeat="item in vm.selectedBook.introduction">
+                    <div class="md-list-item-text" layout="column">
+                        <p>{{ item.content }}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+            <md-divider></md-divider>
+            <div class="align-center" layout-margin="10">
+                <div class="image-preview-container"
+                     ng-style="{'background-image': 'url({{ vm.selectedBook.author.avatar }})'}"></div>
+                <div>Written by {{vm.selectedBook.author.name}}</div>
+            </div>
+
+        </md-content>
+    </main>
+
+    <footer>
+        <div layout="column" layout-align="center center" layout-padding="10">
+            <h2>Similar Reading</h2>
+
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+        </div>
+    </footer>
+</div>

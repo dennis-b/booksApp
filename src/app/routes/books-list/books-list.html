@@ -31,22 +31,7 @@
     <div layout="row" layout-wrap>
         <md-card style="width: 250px;"
                  ng-repeat="book in vm.filtered  | filter:vm.search | filter:vm.filter | startFrom:(vm.currentPage-1)*vm.entryLimit | limitTo:vm.entryLimit">
-            <img ng-src={{book.cover}} class="md-card-image cover-image" alt="book cover">
-            <md-card-content style="min-height: 228px">
-                <div style="min-height: 70px">
-                    <h3 class="md-title">{{book.name}}</h3>
-
-                    <div>By {{book.author.name}}</div>
-                </div>
-
-                <div style="margin-top: 20px">
-                    <div><i class="fa fa-heart-o"></i> {{book.likes}}</div>
-                    <div ng-bind="vm.calcDate(book.published)"></div>
-                </div>
-            </md-card-content>
-            <div class="md-actions" layout="row" layout-align="center">
-                <md-button ng-click="vm.showDetails(book)" class="md-raised md-primary">Details</md-button>
-            </div>
+            <book-info book="book"></book-info>
         </md-card>
     </div>
 
