@@ -3,11 +3,12 @@ import {Inject,Service} from 'annotations/ng-decorator';
 @Service({
     serviceName: 'booksService'
 })
-@Inject('Restangular', 'localStorageService')
+@Inject('Restangular', 'localStorageService', '$q')
 class BooksService {
-    constructor(Restangular, localStorageService) {
+    constructor(Restangular, localStorageService, $q) {
         this.Restangular = Restangular;
         this.localStorageService = localStorageService;
+        this.$q = $q;
     }
 
     getBooks() {
@@ -32,8 +33,14 @@ class BooksService {
     }
 
     getBookById(id) {
-        return _.find(this.getBooks(), function (book) {
+        var books = this.getBooks();
+        return _.find(books, function (book) {
             return book.id == id;
         })
+    }
+
+    getSimilarBooks(selectedBook) {
+        var books = this.getBooks();
+        return this.$q.when(books.slice(0, 3));
     }
 }

@@ -1,6 +1,6 @@
 <div layout="column" class="container">
     <header>
-        <md-button class="md-raised pull-left" ng-click="vm.showAllBooks()">Books</md-button>
+        <md-button class="md-raised md-primary pull-left" ng-click="vm.showAllBooks()">All Books</md-button>
         <div layout="column" layout-align="center center" layout-padding="10">
             <h1>{{vm.selectedBook.name}}</h1>
 
@@ -28,6 +28,7 @@
                      ng-style="{'background-image': 'url({{ vm.selectedBook.author.avatar }})'}"></div>
                 <div>Written by {{vm.selectedBook.author.name}}</div>
             </div>
+            <md-divider></md-divider>
 
         </md-content>
     </main>
@@ -37,15 +38,11 @@
             <h2>Similar Reading</h2>
 
             <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
-            <div>If you liked this book, we recommend you check out these emerging titles.</div>
+            <div layout="row">
+                <md-card style="width: 250px;" ng-repeat="book in vm.similarBooks ">
+                    <book-info book="book"></book-info>
+                </md-card>
+            </div>
         </div>
     </footer>
 </div>

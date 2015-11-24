@@ -15,14 +15,16 @@ import {Inject,Service} from 'annotations/ng-decorator';
     }
 })
 
-@Inject('$scope', 'books', 'selectedBook', '$state')
+@Inject('$scope', 'books', 'selectedBook', '$state', 'booksService')
 //
 class BooksList {
-    constructor($scope, books, selectedBook, $state) {
+    constructor($scope, books, selectedBook, $state, booksService) {
         this.$scope = $scope;
         this.books = books;
         this.$state = $state;
+        this.booksService = booksService;
         this.selectedBook = selectedBook;
+        this.initSimilarBooks();
 
     }
 
@@ -30,32 +32,11 @@ class BooksList {
         this.$state.go("books");
     }
 
-    initPaginationControls() {
-        this.currentPage = 1;
-        this.totalItems = this.books.length;
-        this.entryLimit = 4; // items per page
-        this.noOfPages = Math.ceil(this.totalItems / this.entryLimit);
+    initSimilarBooks() {
+        let _this = this;
+        this.booksService.getSimilarBooks(this.selectedBook).then(function (similarBooks) {
+            _this.similarBooks = similarBooks;
+        });
     }
-
-    addFilterWatch() {
-        var _this = this;
-        _this.$scope.$watch('vm.filter', function (newVal, oldVal) {
-            _this.filtered = _this.$filter('filter')(_this.books, newVal, true);
-            _this.handlePagination();
-        }, true);
-    }
-
-    addSearchWatch() {
-        var _this = this;
-        _this.$scope.$watch('vm.search', function (newVal, oldVal) {
-            _this.filter = {genre: {}};
-            _this.filtered = _this.$filter('filter')(_this.books, newVal, function (searchModel, expected) {
-                return searchModel.toLowerCase().indexOf(expected.toLowerCase()) > -1;
-
-            });
-            _this.handlePagination();
-        }, true);
-    }
-
 
 }
