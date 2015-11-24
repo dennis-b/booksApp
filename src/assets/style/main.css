@@ -141,8 +141,8 @@ footer {
 }
 
 header {
-    background-color: rgb(16, 108, 200);
-    color: rgba(255, 255, 255, 0.87);
+    background-color: #efefef;
+    /*color: rgba(255, 255, 255, 0.87);*/
 }
 
 .image-preview-container {
