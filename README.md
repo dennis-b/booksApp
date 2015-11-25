@@ -14,3 +14,11 @@ $ run on local server # you may use gulp webserver task
 # Demo :
  [example]( http://dennis-b.github.io/booksApp/ "example")
 
+
+# Technologies :
+
+```
+1. angular + es6/7 - https://github.com/dennis-b/demo-app
+2. angular-material/bootstrap for design
+2. webpack - build tool
+```

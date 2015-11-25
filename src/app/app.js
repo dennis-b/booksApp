@@ -16,9 +16,7 @@ import 'angular-local-storage';
 //----------------app files-----------------------------------------------------
 import './core/core';
 import './routes/routes';
-import './books/service/books-service';
-import './books/filter/start-from-pagination-filter';
-import './books/directive/book-info';
+import './books/books';
 import mainModule from './main-module';
 
 
