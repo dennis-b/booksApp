@@ -9,7 +9,7 @@ import {Inject,Service} from 'annotations/ng-decorator';
         books: (booksService) => {
             return booksService.getBooks()
         },
-        selectedBook(booksService, $stateParams){
+        selectedBook: (booksService, $stateParams)=> {
             return booksService.getBookById($stateParams.id)
         }
     }
