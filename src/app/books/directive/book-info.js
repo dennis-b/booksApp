@@ -25,7 +25,6 @@ class BookInfo {
     }
 
     showDetails(book) {
-        console.log(book.id);
         this.$state.go("books-details", {id: book.id});
     }
 }
