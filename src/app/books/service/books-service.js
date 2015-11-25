@@ -49,7 +49,7 @@ class BooksService {
         let similarArr = [];
         for (var i = 0; i < books.length; i++) {
             var book = books[i];
-            if (book.name != selectedBook.name && book.genre.category === selectedBook.genre.category) {
+            if (book.id != selectedBook.id && book.genre.category === selectedBook.genre.category) {
                 similarArr.push(book);
                 if (similarArr.length == 3) {
                     return similarArr
